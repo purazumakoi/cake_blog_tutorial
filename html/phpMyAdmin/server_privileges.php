@@ -1257,7 +1257,7 @@ if (! empty($update_privs)) {
     }
     if (! PMA_DBI_try_query($sql_query0)) {
         // This might fail when the executing user does not have ALL PRIVILEGES himself.
-        // See https://sourceforge.net/tracker/index.php?func=detail&aid=3285929&group_id=23067&atid=377408
+        // See https://sourceforge.net/tracker/index.ctp?func=detail&aid=3285929&group_id=23067&atid=377408
         $sql_query0 = '';
     }
     if (isset($sql_query1) && ! PMA_DBI_try_query($sql_query1)) {

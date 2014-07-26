@@ -345,8 +345,8 @@ class TreeBehavior extends ModelBehavior {
  *
  * @param Model $Model Model instance
  * @param string|array $conditions SQL conditions as a string or as an array('field' =>'value',...)
- * @param string $keyPath A string path to the key, i.e. "{n}.Post.id"
- * @param string $valuePath A string path to the value, i.e. "{n}.Post.title"
+ * @param string $keyPath A string path to the key, i.e. "{n}.Posts.id"
+ * @param string $valuePath A string path to the value, i.e. "{n}.Posts.title"
  * @param string $spacer The character or characters which will be repeated
  * @param integer $recursive The number of levels deep to fetch associated records
  * @return array An associative array of records, where the id is the key, and the display field is the value

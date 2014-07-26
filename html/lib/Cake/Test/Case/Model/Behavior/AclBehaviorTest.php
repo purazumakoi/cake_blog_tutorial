@@ -142,7 +142,7 @@ class AclPost extends CakeTestModel {
  *
  * @var string
  */
-	public $name = 'Post';
+	public $name = 'Posts';
 
 /**
  * useTable property
@@ -233,8 +233,8 @@ class AclBehaviorTest extends CakeTestCase {
 		$this->assertTrue(is_object($User->Aro));
 
 		$Post = new AclPost();
-		$this->assertTrue(isset($Post->Behaviors->Acl->settings['Post']));
-		$this->assertEquals('controlled', $Post->Behaviors->Acl->settings['Post']['type']);
+		$this->assertTrue(isset($Post->Behaviors->Acl->settings['Posts']));
+		$this->assertEquals('controlled', $Post->Behaviors->Acl->settings['Posts']['type']);
 		$this->assertTrue(is_object($Post->Aco));
 	}
 
@@ -259,19 +259,19 @@ class AclBehaviorTest extends CakeTestCase {
 	public function testAfterSave() {
 		$Post = new AclPost();
 		$data = array(
-			'Post' => array(
+			'Posts' => array(
 				'author_id' => 1,
-				'title' => 'Acl Post',
+				'title' => 'Acl Posts',
 				'body' => 'post body',
 				'published' => 1
 			),
 		);
 		$Post->save($data);
 		$result = $this->Aco->find('first', array(
-			'conditions' => array('Aco.model' => 'Post', 'Aco.foreign_key' => $Post->id)
+			'conditions' => array('Aco.model' => 'Posts', 'Aco.foreign_key' => $Post->id)
 		));
 		$this->assertTrue(is_array($result));
-		$this->assertEquals('Post', $result['Aco']['model']);
+		$this->assertEquals('Posts', $result['Aco']['model']);
 		$this->assertEquals($Post->id, $result['Aco']['foreign_key']);
 
 		$aroData = array(

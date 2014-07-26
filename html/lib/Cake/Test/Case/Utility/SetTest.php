@@ -662,7 +662,7 @@ class SetTest extends CakeTestCase {
 
 		$habtm = array(
 			array(
-				'Post' => array(
+				'Posts' => array(
 					'id' => 1,
 					'title' => 'great post',
 				),
@@ -686,7 +686,7 @@ class SetTest extends CakeTestCase {
 				),
 			),
 			array(
-				'Post' => array(
+				'Posts' => array(
 					'id' => 2,
 					'title' => 'fun post',
 				),
@@ -759,7 +759,7 @@ class SetTest extends CakeTestCase {
 
 		$habtm = array(
 			array(
-				'Post' => array(
+				'Posts' => array(
 					'id' => 1,
 					'title' => 'great post',
 				),
@@ -783,7 +783,7 @@ class SetTest extends CakeTestCase {
 				),
 			),
 			array(
-				'Post' => array(
+				'Posts' => array(
 					'id' => 2,
 					'title' => 'fun post',
 				),
@@ -1455,13 +1455,13 @@ class SetTest extends CakeTestCase {
  * @return void
  */
 	public function testSetExtractReturnsEmptyArray() {
-		$this->assertEquals(Set::extract(array(), '/Post/id'), array());
+		$this->assertEquals(Set::extract(array(), '/Posts/id'), array());
 
-		$this->assertEquals(Set::extract('/Post/id', array()), array());
+		$this->assertEquals(Set::extract('/Posts/id', array()), array());
 
-		$this->assertEquals(Set::extract('/Post/id', array(
-			array('Post' => array('name' => 'bob')),
-			array('Post' => array('name' => 'jim'))
+		$this->assertEquals(Set::extract('/Posts/id', array(
+			array('Posts' => array('name' => 'bob')),
+			array('Posts' => array('name' => 'jim'))
 		)), array());
 
 		$this->assertEquals(Set::extract(array(), 'Message.flash'), null);
@@ -2013,7 +2013,7 @@ class SetTest extends CakeTestCase {
 		$this->assertEquals($expected, $result);
 
 		$expected = array(
-			'Post' => array('id' => 1, 'title' => 'First Post'),
+			'Posts' => array('id' => 1, 'title' => 'First Posts'),
 			'Comment' => array(
 				array('id' => 1, 'title' => 'First Comment'),
 				array('id' => 2, 'title' => 'Second Comment')
@@ -2024,7 +2024,7 @@ class SetTest extends CakeTestCase {
 			),
 		);
 		$map = Set::map($expected);
-		$this->assertEquals($expected['Post']['title'], $map->title);
+		$this->assertEquals($expected['Posts']['title'], $map->title);
 		foreach ($map->Comment as $comment) {
 			$ids[] = $comment->id;
 		}
@@ -2468,22 +2468,22 @@ class SetTest extends CakeTestCase {
 	public function testNestedMappedData() {
 		$result = Set::map(array(
 				array(
-					'Post' => array('id' => '1', 'author_id' => '1', 'title' => 'First Post', 'body' => 'First Post Body', 'published' => 'Y', 'created' => '2007-03-18 10:39:23', 'updated' => '2007-03-18 10:41:31'),
+					'Posts' => array('id' => '1', 'author_id' => '1', 'title' => 'First Posts', 'body' => 'First Posts Body', 'published' => 'Y', 'created' => '2007-03-18 10:39:23', 'updated' => '2007-03-18 10:41:31'),
 					'Author' => array('id' => '1', 'user' => 'mariano', 'password' => '5f4dcc3b5aa765d61d8327deb882cf99', 'created' => '2007-03-17 01:16:23', 'updated' => '2007-03-17 01:18:31', 'test' => 'working'),
 				),
 				array(
-					'Post' => array('id' => '2', 'author_id' => '3', 'title' => 'Second Post', 'body' => 'Second Post Body', 'published' => 'Y', 'created' => '2007-03-18 10:41:23', 'updated' => '2007-03-18 10:43:31'),
+					'Posts' => array('id' => '2', 'author_id' => '3', 'title' => 'Second Posts', 'body' => 'Second Posts Body', 'published' => 'Y', 'created' => '2007-03-18 10:41:23', 'updated' => '2007-03-18 10:43:31'),
 					'Author' => array('id' => '3', 'user' => 'larry', 'password' => '5f4dcc3b5aa765d61d8327deb882cf99', 'created' => '2007-03-17 01:20:23', 'updated' => '2007-03-17 01:22:31', 'test' => 'working'),
 				)
 			));
 
 		// @codingStandardsIgnoreStart
 		$expected = new stdClass;
-		$expected->_name_ = 'Post';
+		$expected->_name_ = 'Posts';
 		$expected->id = '1';
 		$expected->author_id = '1';
-		$expected->title = 'First Post';
-		$expected->body = 'First Post Body';
+		$expected->title = 'First Posts';
+		$expected->body = 'First Posts Body';
 		$expected->published = 'Y';
 		$expected->created = "2007-03-18 10:39:23";
 		$expected->updated = "2007-03-18 10:41:31";
@@ -2498,11 +2498,11 @@ class SetTest extends CakeTestCase {
 		$expected->Author->_name_ = 'Author';
 
 		$expected2 = new stdClass;
-		$expected2->_name_ = 'Post';
+		$expected2->_name_ = 'Posts';
 		$expected2->id = '2';
 		$expected2->author_id = '3';
-		$expected2->title = 'Second Post';
-		$expected2->body = 'Second Post Body';
+		$expected2->title = 'Second Posts';
+		$expected2->body = 'Second Posts Body';
 		$expected2->published = 'Y';
 		$expected2->created = "2007-03-18 10:41:23";
 		$expected2->updated = "2007-03-18 10:43:31";
@@ -2525,17 +2525,17 @@ class SetTest extends CakeTestCase {
 
 		$result = Set::map(
 			array(
-				'Post' => array('id' => '1', 'author_id' => '1', 'title' => 'First Post', 'body' => 'First Post Body', 'published' => 'Y', 'created' => '2007-03-18 10:39:23', 'updated' => '2007-03-18 10:41:31'),
+				'Posts' => array('id' => '1', 'author_id' => '1', 'title' => 'First Posts', 'body' => 'First Posts Body', 'published' => 'Y', 'created' => '2007-03-18 10:39:23', 'updated' => '2007-03-18 10:41:31'),
 				'Author' => array('id' => '1', 'user' => 'mariano', 'password' => '5f4dcc3b5aa765d61d8327deb882cf99', 'created' => '2007-03-17 01:16:23', 'updated' => '2007-03-17 01:18:31', 'test' => 'working'),
 			)
 		);
 		// @codingStandardsIgnoreStart
 		$expected = new stdClass;
-		$expected->_name_ = 'Post';
+		$expected->_name_ = 'Posts';
 		$expected->id = '1';
 		$expected->author_id = '1';
-		$expected->title = 'First Post';
-		$expected->body = 'First Post Body';
+		$expected->title = 'First Posts';
+		$expected->body = 'First Posts Body';
 		$expected->published = 'Y';
 		$expected->created = "2007-03-18 10:39:23";
 		$expected->updated = "2007-03-18 10:41:31";
@@ -3076,15 +3076,15 @@ class SetTest extends CakeTestCase {
 
 		$data = array(
 			array(
-				'Post' => array('id' => '1', 'author_id' => null, 'title' => 'First Post'),
+				'Posts' => array('id' => '1', 'author_id' => null, 'title' => 'First Posts'),
 				'Author' => array(),
 			)
 		);
 		$result = Set::flatten($data);
 		$expected = array(
-			'0.Post.id' => '1',
-			'0.Post.author_id' => null,
-			'0.Post.title' => 'First Post',
+			'0.Posts.id' => '1',
+			'0.Posts.author_id' => null,
+			'0.Posts.title' => 'First Posts',
 			'0.Author' => array()
 		);
 		$this->assertEquals($expected, $result);

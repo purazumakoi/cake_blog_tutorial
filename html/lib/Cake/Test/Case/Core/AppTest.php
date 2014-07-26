@@ -421,11 +421,11 @@ class AppTest extends CakeTestCase {
 
 		$result = App::objects('model', null, false);
 		$this->assertTrue(in_array('Comment', $result));
-		$this->assertTrue(in_array('Post', $result));
+		$this->assertTrue(in_array('Posts', $result));
 
 		$result = App::objects('Model', null, false);
 		$this->assertTrue(in_array('Comment', $result));
-		$this->assertTrue(in_array('Post', $result));
+		$this->assertTrue(in_array('Posts', $result));
 
 		App::build();
 	}

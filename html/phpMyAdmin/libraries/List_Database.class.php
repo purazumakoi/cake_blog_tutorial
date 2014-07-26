@@ -340,7 +340,7 @@ require_once './libraries/List.class.php';
                 if (! empty($db['comment'])) {
                     $return .= ' title="' . htmlspecialchars($db['comment']) . '"';
                 }
-                $return .= ' href="index.php?' . PMA_generate_common_url($db['name'])
+                $return .= ' href="index.ctp?' . PMA_generate_common_url($db['name'])
                     . '" target="_parent">';
                 if ($cut) {
                     $return .= htmlspecialchars($db['disp_name_cut']);

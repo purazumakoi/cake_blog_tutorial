@@ -89,7 +89,7 @@ function PMA_buildHtmlForDb($current, $is_superuser, $checkall, $url_query, $col
     $out .= '<td class="name">'
            . '        <a onclick="'
            . 'if (window.parent.openDb &amp;&amp; window.parent.openDb(\'' . PMA_jsFormat($current['SCHEMA_NAME'], false) . '\')) return false;'
-           . '" href="index.php?' . $url_query . '&amp;db='
+           . '" href="index.ctp?' . $url_query . '&amp;db='
            . urlencode($current['SCHEMA_NAME']) . '" title="'
            . sprintf(__('Jump to database'), htmlspecialchars($current['SCHEMA_NAME']))
            . '" target="_parent">'

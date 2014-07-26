@@ -17,7 +17,7 @@
  */
 
 /**
- * Class Post
+ * Class Posts
  *
  * @package       Cake.Test.TestApp.Model
  */

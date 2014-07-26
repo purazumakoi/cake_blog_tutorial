@@ -909,7 +909,7 @@ class Home extends CakeTestModel {
 }
 
 /**
- * Post class
+ * Posts class
  *
  * @package       Cake.Test.Case.Model
  */
@@ -920,7 +920,7 @@ class Post extends CakeTestModel {
  *
  * @var string
  */
-	public $name = 'Post';
+	public $name = 'Posts';
 
 /**
  * belongsTo property
@@ -971,7 +971,7 @@ class Author extends CakeTestModel {
  *
  * @var array
  */
-	public $hasMany = array('Post');
+	public $hasMany = array('Posts');
 
 /**
  * afterFind method
@@ -3287,7 +3287,7 @@ class CounterCacheUser extends CakeTestModel {
 	public $alias = 'User';
 
 	public $hasMany = array(
-		'Post' => array(
+		'Posts' => array(
 			'className' => 'CounterCachePost',
 			'foreignKey' => 'user_id'
 		)
@@ -3298,7 +3298,7 @@ class CounterCachePost extends CakeTestModel {
 
 	public $name = 'CounterCachePost';
 
-	public $alias = 'Post';
+	public $alias = 'Posts';
 
 	public $belongsTo = array(
 		'User' => array(
@@ -3318,7 +3318,7 @@ class CounterCacheUserNonstandardPrimaryKey extends CakeTestModel {
 	public $primaryKey = 'uid';
 
 	public $hasMany = array(
-		'Post' => array(
+		'Posts' => array(
 			'className' => 'CounterCachePostNonstandardPrimaryKey',
 			'foreignKey' => 'uid'
 		)
@@ -3330,7 +3330,7 @@ class CounterCachePostNonstandardPrimaryKey extends CakeTestModel {
 
 	public $name = 'CounterCachePostNonstandardPrimaryKey';
 
-	public $alias = 'Post';
+	public $alias = 'Posts';
 
 	public $primaryKey = 'pid';
 

@@ -159,10 +159,10 @@ class CakeSessionTest extends CakeTestCase {
  * @return void
  */
 	public function testSessionPath() {
-		TestCakeSession::init('/index.php');
+		TestCakeSession::init('/index.ctp');
 		$this->assertEquals('/', TestCakeSession::$path);
 
-		TestCakeSession::init('/sub_dir/index.php');
+		TestCakeSession::init('/sub_dir/index.ctp');
 		$this->assertEquals('/sub_dir/', TestCakeSession::$path);
 	}
 
@@ -182,7 +182,7 @@ class CakeSessionTest extends CakeTestCase {
  * @return void
  */
 	public function testCakeSessionPathContainsQuestion() {
-		TestCakeSession::init('/index.php?');
+		TestCakeSession::init('/index.ctp?');
 		$this->assertEquals('/', TestCakeSession::$path);
 	}
 

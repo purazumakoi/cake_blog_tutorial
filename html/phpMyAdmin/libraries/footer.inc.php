@@ -3,7 +3,7 @@
 /**
  * finishes HTML output
  *
- * updates javascript variables in index.php for correct working with querywindow
+ * updates javascript variables in index.ctp for correct working with querywindow
  * and navigation frame refreshing
  *
  * send buffered data if buffered
@@ -159,7 +159,7 @@ setURLHash("<?php echo PMA_generate_common_url($url_params, 'text', ''); ?>");
 </script>
 <?php
 
-    echo '<a href="index.php' . PMA_generate_common_url($url_params) . '"'
+    echo '<a href="index.ctp' . PMA_generate_common_url($url_params) . '"'
         . ' title="' . __('Open new phpMyAdmin window') . '" target="_blank">';
     if ($GLOBALS['cfg']['NavigationBarIconic']) {
         echo PMA_getImage('window-new.png', __('Open new phpMyAdmin window'));

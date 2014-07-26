@@ -638,7 +638,7 @@ class SqlserverTest extends CakeTestCase {
  * @return void
  */
 	public function testLimitOffsetHack() {
-		$this->loadFixtures('Author', 'Post', 'User');
+		$this->loadFixtures('Author', 'Posts', 'User');
 		$query = array(
 			'limit' => 2,
 			'page' => 1,

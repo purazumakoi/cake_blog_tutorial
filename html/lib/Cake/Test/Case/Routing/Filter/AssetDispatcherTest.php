@@ -130,7 +130,7 @@ class AssetDispatcherTest extends CakeTestCase {
 	}
 
 /**
- * Test that no exceptions are thrown for //index.php type URLs.
+ * Test that no exceptions are thrown for //index.ctp type URLs.
  *
  * @return void
  */
@@ -138,7 +138,7 @@ class AssetDispatcherTest extends CakeTestCase {
 		$filter = new AssetDispatcher();
 
 		$response = $this->getMock('CakeResponse', array('_sendHeader'));
-		$request = new CakeRequest('//index.php');
+		$request = new CakeRequest('//index.ctp');
 		$event = new CakeEvent('Dispatcher.beforeRequest', $this, compact('request', 'response'));
 
 		$this->assertNull($filter->beforeDispatch($event));

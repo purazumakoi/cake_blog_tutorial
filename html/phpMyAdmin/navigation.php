@@ -163,7 +163,7 @@ require './libraries/navigation_header.inc.php';
 // display recently used tables
 if ($GLOBALS['cfg']['LeftRecentTable'] > 0) {
     echo '<div id="recentTableList">' . "\n"
-        .'<form method="post" action="index.php" target="_parent">' . "\n"
+        .'<form method="post" action="index.ctp" target="_parent">' . "\n"
         .PMA_generate_common_hidden_inputs() . "\n"
         .PMA_RecentTable::getInstance()->getHtmlSelect()
         .'<noscript>' . "\n"

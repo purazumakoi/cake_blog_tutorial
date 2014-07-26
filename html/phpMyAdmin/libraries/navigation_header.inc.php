@@ -71,7 +71,7 @@ if ($GLOBALS['cfg']['LeftDisplayLogo']) {
         // Logout for advanced authentication
         if ($GLOBALS['cfg']['Server']['auth_type'] != 'config') {
             echo ($GLOBALS['cfg']['MainPageIconic'] ? '' : ' - ');
-            echo '<a href="index.php?' . $query_url . '&amp;old_usr='
+            echo '<a href="index.ctp?' . $query_url . '&amp;old_usr='
                 .urlencode($PHP_AUTH_USER) . '" target="_parent"'
                 .' title="' . __('Log out') . '" >'
                 .($GLOBALS['cfg']['MainPageIconic']

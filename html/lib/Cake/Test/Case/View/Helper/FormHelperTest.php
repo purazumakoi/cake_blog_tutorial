@@ -3262,7 +3262,7 @@ class FormHelperTest extends CakeTestCase {
  * @return void
  */
 	public function testInputsPluginModel() {
-		$this->loadFixtures('Post');
+		$this->loadFixtures('Posts');
 		App::build(array(
 			'Plugin' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS)
 		));
@@ -7371,8 +7371,8 @@ class FormHelperTest extends CakeTestCase {
  * @return void
  */
 	public function testTextAreaWithStupidCharacters() {
-		$this->loadFixtures('Post');
-		$result = $this->Form->input('Post.content', array(
+		$this->loadFixtures('Posts');
+		$result = $this->Form->input('Posts.content', array(
 			'label' => 'Current Text', 'value' => "GREAT®", 'rows' => '15', 'cols' => '75'
 		));
 		$expected = array(
@@ -7380,7 +7380,7 @@ class FormHelperTest extends CakeTestCase {
 				'label' => array('for' => 'PostContent'),
 					'Current Text',
 				'/label',
-				'textarea' => array('name' => 'data[Post][content]', 'id' => 'PostContent', 'rows' => '15', 'cols' => '75'),
+				'textarea' => array('name' => 'data[Posts][content]', 'id' => 'PostContent', 'rows' => '15', 'cols' => '75'),
 				'GREAT®',
 				'/textarea',
 			'/div'
@@ -9662,7 +9662,7 @@ class FormHelperTest extends CakeTestCase {
  * @return void
  */
 	public function testIntrospectModelFromRequest() {
-		$this->loadFixtures('Post');
+		$this->loadFixtures('Posts');
 		App::build(array(
 			'Plugin' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS)
 		));

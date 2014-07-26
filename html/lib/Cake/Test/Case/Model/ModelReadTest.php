@@ -4991,18 +4991,18 @@ class ModelReadTest extends BaseModelTest {
  * @return void
  */
 	public function testAssociationAfterFind() {
-		$this->loadFixtures('Post', 'Author', 'Comment');
+		$this->loadFixtures('Posts', 'Author', 'Comment');
 		$TestModel = new Post();
 		$result = $TestModel->find('all', array(
-			'order' => array('Post.id' => 'ASC')
+			'order' => array('Posts.id' => 'ASC')
 		));
 		$expected = array(
 			array(
-				'Post' => array(
+				'Posts' => array(
 					'id' => '1',
 					'author_id' => '1',
-					'title' => 'First Post',
-					'body' => 'First Post Body',
+					'title' => 'First Posts',
+					'body' => 'First Posts Body',
 					'published' => 'Y',
 					'created' => '2007-03-18 10:39:23',
 					'updated' => '2007-03-18 10:41:31'
@@ -5016,11 +5016,11 @@ class ModelReadTest extends BaseModelTest {
 					'test' => 'working'
 			)),
 			array(
-				'Post' => array(
+				'Posts' => array(
 					'id' => '2',
 					'author_id' => '3',
-					'title' => 'Second Post',
-					'body' => 'Second Post Body',
+					'title' => 'Second Posts',
+					'body' => 'Second Posts Body',
 					'published' => 'Y',
 					'created' => '2007-03-18 10:41:23',
 					'updated' => '2007-03-18 10:43:31'
@@ -5034,11 +5034,11 @@ class ModelReadTest extends BaseModelTest {
 					'test' => 'working'
 			)),
 			array(
-				'Post' => array(
+				'Posts' => array(
 					'id' => '3',
 					'author_id' => '1',
-					'title' => 'Third Post',
-					'body' => 'Third Post Body',
+					'title' => 'Third Posts',
+					'body' => 'Third Posts Body',
 					'published' => 'Y',
 					'created' => '2007-03-18 10:43:23',
 					'updated' => '2007-03-18 10:45:31'
@@ -5077,7 +5077,7 @@ class ModelReadTest extends BaseModelTest {
 			'updated' => '2007-03-18 10:47:31',
 			'callback' => 'Fire'
 		);
-		$this->assertEquals($expected, $result[0]['Post'][0]['Comment'][0]);
+		$this->assertEquals($expected, $result[0]['Posts'][0]['Comment'][0]);
 	}
 
 /**
@@ -5086,7 +5086,7 @@ class ModelReadTest extends BaseModelTest {
  * @return void
  */
 	public function testDeeperAssociationAfterFind() {
-		$this->loadFixtures('Post', 'Author', 'Comment', 'Attachment', 'Article');
+		$this->loadFixtures('Posts', 'Author', 'Comment', 'Attachment', 'Article');
 
 		$Post = new Post();
 		$Post->bindModel(array(
@@ -5104,7 +5104,7 @@ class ModelReadTest extends BaseModelTest {
 		)));
 
 		$result = $Post->find('first', array(
-			'conditions' => array('Post.id' => 2),
+			'conditions' => array('Posts.id' => 2),
 			'recursive' => 2
 		));
 		$this->assertTrue(isset($result['Comment'][0]['callback']));
@@ -5145,19 +5145,19 @@ class ModelReadTest extends BaseModelTest {
  * @return void
  */
 	public function testAssociationAfterFindCalbacksDisabled() {
-		$this->loadFixtures('Post', 'Author', 'Comment');
+		$this->loadFixtures('Posts', 'Author', 'Comment');
 		$TestModel = new Post();
 		$result = $TestModel->find('all', array(
 			'callbacks' => false,
-			'order' => array('Post.id' => 'ASC'),
+			'order' => array('Posts.id' => 'ASC'),
 		));
 		$expected = array(
 			array(
-				'Post' => array(
+				'Posts' => array(
 					'id' => '1',
 					'author_id' => '1',
-					'title' => 'First Post',
-					'body' => 'First Post Body',
+					'title' => 'First Posts',
+					'body' => 'First Posts Body',
 					'published' => 'Y',
 					'created' => '2007-03-18 10:39:23',
 					'updated' => '2007-03-18 10:41:31'
@@ -5170,11 +5170,11 @@ class ModelReadTest extends BaseModelTest {
 					'updated' => '2007-03-17 01:18:31'
 			)),
 			array(
-				'Post' => array(
+				'Posts' => array(
 					'id' => '2',
 					'author_id' => '3',
-					'title' => 'Second Post',
-					'body' => 'Second Post Body',
+					'title' => 'Second Posts',
+					'body' => 'Second Posts Body',
 					'published' => 'Y',
 					'created' => '2007-03-18 10:41:23',
 					'updated' => '2007-03-18 10:43:31'
@@ -5187,11 +5187,11 @@ class ModelReadTest extends BaseModelTest {
 					'updated' => '2007-03-17 01:22:31'
 			)),
 			array(
-				'Post' => array(
+				'Posts' => array(
 					'id' => '3',
 					'author_id' => '1',
-					'title' => 'Third Post',
-					'body' => 'Third Post Body',
+					'title' => 'Third Posts',
+					'body' => 'Third Posts Body',
 					'published' => 'Y',
 					'created' => '2007-03-18 10:43:23',
 					'updated' => '2007-03-18 10:45:31'
@@ -5229,7 +5229,7 @@ class ModelReadTest extends BaseModelTest {
 			'created' => '2007-03-18 10:45:23',
 			'updated' => '2007-03-18 10:47:31'
 		);
-		$this->assertEquals($expected, $result[0]['Post'][0]['Comment'][0]);
+		$this->assertEquals($expected, $result[0]['Posts'][0]['Comment'][0]);
 	}
 
 /**
@@ -5239,7 +5239,7 @@ class ModelReadTest extends BaseModelTest {
  * @return void
  */
 	public function testCallbackSourceChange() {
-		$this->loadFixtures('Post');
+		$this->loadFixtures('Posts');
 		$TestModel = new Post();
 		$this->assertEquals(3, count($TestModel->find('all')));
 	}
@@ -5251,7 +5251,7 @@ class ModelReadTest extends BaseModelTest {
  * @return void
  */
 	public function testCallbackSourceChangeUnknownDatasource() {
-		$this->loadFixtures('Post', 'Author');
+		$this->loadFixtures('Posts', 'Author');
 		$TestModel = new Post();
 		$this->assertFalse($TestModel->find('all', array('connection' => 'foo')));
 	}
@@ -5418,7 +5418,7 @@ class ModelReadTest extends BaseModelTest {
  * @return void
  */
 	public function testNonNumericHabtmJoinKey() {
-		$this->loadFixtures('Post', 'Tag', 'PostsTag', 'Author');
+		$this->loadFixtures('Posts', 'Tag', 'PostsTag', 'Author');
 		$Post = new Post();
 		$Post->bindModel(array(
 			'hasAndBelongsToMany' => array('Tag')
@@ -5426,15 +5426,15 @@ class ModelReadTest extends BaseModelTest {
 		$Post->Tag->primaryKey = 'tag';
 
 		$result = $Post->find('all', array(
-			'order' => 'Post.id ASC',
+			'order' => 'Posts.id ASC',
 		));
 		$expected = array(
 			array(
-				'Post' => array(
+				'Posts' => array(
 					'id' => '1',
 					'author_id' => '1',
-					'title' => 'First Post',
-					'body' => 'First Post Body',
+					'title' => 'First Posts',
+					'body' => 'First Posts Body',
 					'published' => 'Y',
 					'created' => '2007-03-18 10:39:23',
 					'updated' => '2007-03-18 10:41:31'
@@ -5461,11 +5461,11 @@ class ModelReadTest extends BaseModelTest {
 						'updated' => '2007-03-18 12:26:31'
 			))),
 			array(
-				'Post' => array(
+				'Posts' => array(
 					'id' => '2',
 					'author_id' => '3',
-					'title' => 'Second Post',
-					'body' => 'Second Post Body',
+					'title' => 'Second Posts',
+					'body' => 'Second Posts Body',
 					'published' => 'Y',
 					'created' => '2007-03-18 10:41:23',
 					'updated' => '2007-03-18 10:43:31'
@@ -5492,11 +5492,11 @@ class ModelReadTest extends BaseModelTest {
 						'updated' => '2007-03-18 12:28:31'
 			))),
 			array(
-				'Post' => array(
+				'Posts' => array(
 					'id' => '3',
 					'author_id' => '1',
-					'title' => 'Third Post',
-					'body' => 'Third Post Body',
+					'title' => 'Third Posts',
+					'body' => 'Third Posts Body',
 					'published' => 'Y',
 					'created' => '2007-03-18 10:43:23',
 					'updated' => '2007-03-18 10:45:31'
@@ -6557,7 +6557,7 @@ class ModelReadTest extends BaseModelTest {
  * @return void
  */
 	public function testGenerateFindList() {
-		$this->loadFixtures('Article', 'Apple', 'Post', 'Author', 'User', 'Comment');
+		$this->loadFixtures('Article', 'Apple', 'Posts', 'Author', 'User', 'Comment');
 
 		$TestModel = new Article();
 		$TestModel->displayField = 'title';
@@ -6710,12 +6710,12 @@ class ModelReadTest extends BaseModelTest {
 
 		$TestModel = new Post();
 		$result = $TestModel->find('list', array(
-			'fields' => 'Post.title'
+			'fields' => 'Posts.title'
 		));
 		$expected = array(
-			1 => 'First Post',
-			2 => 'Second Post',
-			3 => 'Third Post'
+			1 => 'First Posts',
+			2 => 'Second Posts',
+			3 => 'Third Posts'
 		);
 		$this->assertEquals($expected, $result);
 
@@ -6723,9 +6723,9 @@ class ModelReadTest extends BaseModelTest {
 			'fields' => 'title'
 		));
 		$expected = array(
-			1 => 'First Post',
-			2 => 'Second Post',
-			3 => 'Third Post'
+			1 => 'First Posts',
+			2 => 'Second Posts',
+			3 => 'Third Posts'
 		);
 		$this->assertEquals($expected, $result);
 
@@ -6733,9 +6733,9 @@ class ModelReadTest extends BaseModelTest {
 			'fields' => array('title', 'id')
 		));
 		$expected = array(
-			'First Post' => '1',
-			'Second Post' => '2',
-			'Third Post' => '3'
+			'First Posts' => '1',
+			'Second Posts' => '2',
+			'Third Posts' => '3'
 		);
 		$this->assertEquals($expected, $result);
 
@@ -6744,48 +6744,48 @@ class ModelReadTest extends BaseModelTest {
 		));
 		$expected = array(
 			'2007-03-18 10:39:23' => array(
-				'First Post' => '1'
+				'First Posts' => '1'
 			),
 			'2007-03-18 10:41:23' => array(
-				'Second Post' => '2'
+				'Second Posts' => '2'
 			),
 			'2007-03-18 10:43:23' => array(
-				'Third Post' => '3'
+				'Third Posts' => '3'
 			),
 		);
 		$this->assertEquals($expected, $result);
 
 		$result = $TestModel->find('list', array(
-			'fields' => array('Post.body')
+			'fields' => array('Posts.body')
 		));
 		$expected = array(
-			1 => 'First Post Body',
-			2 => 'Second Post Body',
-			3 => 'Third Post Body'
+			1 => 'First Posts Body',
+			2 => 'Second Posts Body',
+			3 => 'Third Posts Body'
 		);
 		$this->assertEquals($expected, $result);
 
 		$result = $TestModel->find('list', array(
-			'fields' => array('Post.title', 'Post.body')
+			'fields' => array('Posts.title', 'Posts.body')
 		));
 		$expected = array(
-			'First Post' => 'First Post Body',
-			'Second Post' => 'Second Post Body',
-			'Third Post' => 'Third Post Body'
+			'First Posts' => 'First Posts Body',
+			'Second Posts' => 'Second Posts Body',
+			'Third Posts' => 'Third Posts Body'
 		);
 		$this->assertEquals($expected, $result);
 
 		$result = $TestModel->find('list', array(
-			'fields' => array('Post.id', 'Post.title', 'Author.user'),
+			'fields' => array('Posts.id', 'Posts.title', 'Author.user'),
 			'recursive' => 1
 		));
 		$expected = array(
 			'mariano' => array(
-				1 => 'First Post',
-				3 => 'Third Post'
+				1 => 'First Posts',
+				3 => 'Third Posts'
 			),
 			'larry' => array(
-				2 => 'Second Post'
+				2 => 'Second Posts'
 		));
 		$this->assertEquals($expected, $result);
 
@@ -7709,30 +7709,30 @@ class ModelReadTest extends BaseModelTest {
  * @return void
  */
 	public function testVirtualFields() {
-		$this->loadFixtures('Post', 'Author');
-		$Post = ClassRegistry::init('Post');
+		$this->loadFixtures('Posts', 'Author');
+		$Post = ClassRegistry::init('Posts');
 		$Post->virtualFields = array('two' => "1 + 1");
 		$result = $Post->find('first');
-		$this->assertEquals(2, $result['Post']['two']);
+		$this->assertEquals(2, $result['Posts']['two']);
 
 		// SQL Server does not support operators in expressions
 		if (!($this->db instanceof Sqlserver)) {
 			$Post->Author->virtualFields = array('false' => '1 = 2');
 			$result = $Post->find('first');
-			$this->assertEquals(2, $result['Post']['two']);
+			$this->assertEquals(2, $result['Posts']['two']);
 			$this->assertFalse((bool)$result['Author']['false']);
 		}
 
 		$result = $Post->find('first', array('fields' => array('author_id')));
-		$this->assertFalse(isset($result['Post']['two']));
+		$this->assertFalse(isset($result['Posts']['two']));
 		$this->assertFalse(isset($result['Author']['false']));
 
 		$result = $Post->find('first', array('fields' => array('author_id', 'two')));
-		$this->assertEquals(2, $result['Post']['two']);
+		$this->assertEquals(2, $result['Posts']['two']);
 		$this->assertFalse(isset($result['Author']['false']));
 
 		$result = $Post->find('first', array('fields' => array('two')));
-		$this->assertEquals(2, $result['Post']['two']);
+		$this->assertEquals(2, $result['Posts']['two']);
 
 		$Post->id = 1;
 		$result = $Post->field('two');
@@ -7742,44 +7742,44 @@ class ModelReadTest extends BaseModelTest {
 			'conditions' => array('two' => 2),
 			'limit' => 1
 		));
-		$this->assertEquals(2, $result['Post']['two']);
+		$this->assertEquals(2, $result['Posts']['two']);
 
 		$result = $Post->find('first', array(
 			'conditions' => array('two <' => 3),
 			'limit' => 1
 		));
-		$this->assertEquals(2, $result['Post']['two']);
+		$this->assertEquals(2, $result['Posts']['two']);
 
 		$result = $Post->find('first', array(
 			'conditions' => array('NOT' => array('two >' => 3)),
 			'limit' => 1
 		));
-		$this->assertEquals(2, $result['Post']['two']);
+		$this->assertEquals(2, $result['Posts']['two']);
 
 		$dbo = $Post->getDataSource();
-		$Post->virtualFields = array('other_field' => 'Post.id + 1');
+		$Post->virtualFields = array('other_field' => 'Posts.id + 1');
 		$result = $Post->find('first', array(
 			'conditions' => array('other_field' => 3),
 			'limit' => 1
 		));
-		$this->assertEquals(2, $result['Post']['id']);
+		$this->assertEquals(2, $result['Posts']['id']);
 
 		$Post->order = null;
 
-		$Post->virtualFields = array('other_field' => 'Post.id + 1');
+		$Post->virtualFields = array('other_field' => 'Posts.id + 1');
 		$result = $Post->find('all', array(
 			'fields' => array($dbo->calculate($Post, 'max', array('other_field')))
 		));
 		$this->assertEquals(4, $result[0][0]['other_field']);
 
 		ClassRegistry::flush();
-		$Writing = ClassRegistry::init(array('class' => 'Post', 'alias' => 'Writing'));
+		$Writing = ClassRegistry::init(array('class' => 'Posts', 'alias' => 'Writing'));
 		$Writing->virtualFields = array('two' => "1 + 1");
 		$result = $Writing->find('first');
 		$this->assertEquals(2, $result['Writing']['two']);
 
 		$Post->create();
-		$Post->virtualFields = array('other_field' => 'COUNT(Post.id) + 1');
+		$Post->virtualFields = array('other_field' => 'COUNT(Posts.id) + 1');
 		$result = $Post->field('other_field');
 		$this->assertEquals(4, $result);
 	}
@@ -7792,28 +7792,28 @@ class ModelReadTest extends BaseModelTest {
  * @return void
  */
 	public function testVirtualFieldsOrder() {
-		$this->loadFixtures('Post', 'Author');
-		$Post = ClassRegistry::init('Post');
-		$Post->virtualFields = array('other_field' => '10 - Post.id');
-		$result = $Post->find('list', array('order' => array('Post.other_field' => 'ASC')));
+		$this->loadFixtures('Posts', 'Author');
+		$Post = ClassRegistry::init('Posts');
+		$Post->virtualFields = array('other_field' => '10 - Posts.id');
+		$result = $Post->find('list', array('order' => array('Posts.other_field' => 'ASC')));
 		$expected = array(
-			'3' => 'Third Post',
-			'2' => 'Second Post',
-			'1' => 'First Post'
+			'3' => 'Third Posts',
+			'2' => 'Second Posts',
+			'1' => 'First Posts'
 		);
 		$this->assertEquals($expected, $result);
 
-		$result = $Post->find('list', array('order' => array('Post.other_field' => 'DESC')));
+		$result = $Post->find('list', array('order' => array('Posts.other_field' => 'DESC')));
 		$expected = array(
-			'1' => 'First Post',
-			'2' => 'Second Post',
-			'3' => 'Third Post'
+			'1' => 'First Posts',
+			'2' => 'Second Posts',
+			'3' => 'Third Posts'
 		);
 		$this->assertEquals($expected, $result);
 
-		$Post->Author->virtualFields = array('joined' => 'Post.id * Author.id');
+		$Post->Author->virtualFields = array('joined' => 'Posts.id * Author.id');
 		$result = $Post->find('all', array(
-			'order' => array('Post.id' => 'ASC')
+			'order' => array('Posts.id' => 'ASC')
 		));
 		$result = Hash::extract($result, '{n}.Author.joined');
 		$expected = array(1, 6, 3);
@@ -7841,17 +7841,17 @@ class ModelReadTest extends BaseModelTest {
 	public function testVirtualFieldsMysql() {
 		$this->skipIf(!($this->db instanceof Mysql), 'The rest of virtualFields test only compatible with Mysql.');
 
-		$this->loadFixtures('Post', 'Author');
-		$Post = ClassRegistry::init('Post');
+		$this->loadFixtures('Posts', 'Author');
+		$Post = ClassRegistry::init('Posts');
 
 		$Post->create();
 		$Post->virtualFields = array(
-			'low_title' => 'lower(Post.title)',
-			'unique_test_field' => 'COUNT(Post.id)'
+			'low_title' => 'lower(Posts.title)',
+			'unique_test_field' => 'COUNT(Posts.id)'
 		);
 
 		$expectation = array(
-			'Post' => array(
+			'Posts' => array(
 				'low_title' => 'first post',
 				'unique_test_field' => 1
 			)
@@ -7890,13 +7890,13 @@ class ModelReadTest extends BaseModelTest {
  * @return void
  */
 	public function testVirtualFieldAsAString() {
-		$this->loadFixtures('Post', 'Author');
+		$this->loadFixtures('Posts', 'Author');
 		$Post = new Post();
 		$Post->virtualFields = array(
 			'writer' => 'Author.user'
 		);
 		$result = $Post->find('first');
-		$this->assertTrue(isset($result['Post']['writer']), 'virtual field not fetched %s');
+		$this->assertTrue(isset($result['Posts']['writer']), 'virtual field not fetched %s');
 	}
 
 /**
@@ -7905,15 +7905,15 @@ class ModelReadTest extends BaseModelTest {
  * @return void
  */
 	public function testIsVirtualField() {
-		$this->loadFixtures('Post');
-		$Post = ClassRegistry::init('Post');
-		$Post->virtualFields = array('other_field' => 'COUNT(Post.id) + 1');
+		$this->loadFixtures('Posts');
+		$Post = ClassRegistry::init('Posts');
+		$Post->virtualFields = array('other_field' => 'COUNT(Posts.id) + 1');
 
 		$this->assertTrue($Post->isVirtualField('other_field'));
-		$this->assertTrue($Post->isVirtualField('Post.other_field'));
+		$this->assertTrue($Post->isVirtualField('Posts.other_field'));
 		$this->assertFalse($Post->isVirtualField('Comment.other_field'), 'Other models should not match.');
 		$this->assertFalse($Post->isVirtualField('id'));
-		$this->assertFalse($Post->isVirtualField('Post.id'));
+		$this->assertFalse($Post->isVirtualField('Posts.id'));
 		$this->assertFalse($Post->isVirtualField(array()));
 	}
 
@@ -7923,12 +7923,12 @@ class ModelReadTest extends BaseModelTest {
  * @return void
  */
 	public function testGetVirtualField() {
-		$this->loadFixtures('Post');
-		$Post = ClassRegistry::init('Post');
-		$Post->virtualFields = array('other_field' => 'COUNT(Post.id) + 1');
+		$this->loadFixtures('Posts');
+		$Post = ClassRegistry::init('Posts');
+		$Post->virtualFields = array('other_field' => 'COUNT(Posts.id) + 1');
 
 		$this->assertEquals($Post->getVirtualField('other_field'), $Post->virtualFields['other_field']);
-		$this->assertEquals($Post->getVirtualField('Post.other_field'), $Post->virtualFields['other_field']);
+		$this->assertEquals($Post->getVirtualField('Posts.other_field'), $Post->virtualFields['other_field']);
 	}
 
 /**

@@ -662,7 +662,7 @@ class ObjectTest extends CakeTestCase {
  */
 	public function testRequestActionPostWithData() {
 		$data = array(
-			'Post' => array('id' => 2)
+			'Posts' => array('id' => 2)
 		);
 		$result = $this->object->requestAction(
 			array('controller' => 'request_action', 'action' => 'post_pass'),

@@ -519,7 +519,7 @@ function PMA_auth_set_user()
         }
 
         // URL where to go:
-        $redirect_url = $cfg['PmaAbsoluteUri'] . 'index.php';
+        $redirect_url = $cfg['PmaAbsoluteUri'] . 'index.ctp';
 
         // any parameters to pass?
         $url_params = array();
@@ -530,7 +530,7 @@ function PMA_auth_set_user()
             $url_params['table'] = $GLOBALS['table'];
         }
         // any target to pass?
-        if (! empty($GLOBALS['target']) && $GLOBALS['target'] != 'index.php') {
+        if (! empty($GLOBALS['target']) && $GLOBALS['target'] != 'index.ctp') {
             $url_params['target'] = $GLOBALS['target'];
         }
 

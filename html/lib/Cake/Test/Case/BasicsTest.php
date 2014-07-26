@@ -986,10 +986,10 @@ EXPECTED;
 		$result = pluginSplit('Something.else.more.dots', true);
 		$this->assertEquals(array('Something.', 'else.more.dots'), $result);
 
-		$result = pluginSplit('Post', false, 'Blog');
-		$this->assertEquals(array('Blog', 'Post'), $result);
+		$result = pluginSplit('Posts', false, 'Blog');
+		$this->assertEquals(array('Blog', 'Posts'), $result);
 
-		$result = pluginSplit('Blog.Post', false, 'Ultimate');
-		$this->assertEquals(array('Blog', 'Post'), $result);
+		$result = pluginSplit('Blog.Posts', false, 'Ultimate');
+		$this->assertEquals(array('Blog', 'Posts'), $result);
 	}
 }

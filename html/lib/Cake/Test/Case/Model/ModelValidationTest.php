@@ -664,13 +664,13 @@ class ModelValidationTest extends BaseModelTest {
  * @return void
  */
 	public function testValidatesWithModelsAndSaveAllWithoutId() {
-		$this->loadFixtures('Post', 'Author');
+		$this->loadFixtures('Posts', 'Author');
 
 		$data = array(
 			'Author' => array(
 				'name' => 'Foo Bar',
 			),
-			'Post' => array(
+			'Posts' => array(
 				array('title' => 'Hello'),
 				array('title' => 'World'),
 			)
@@ -697,9 +697,9 @@ class ModelValidationTest extends BaseModelTest {
 		$this->assertSame(1, $count);
 
 		$count = $Post->find('count', array(
-			'conditions' => array('Post.author_id' => $id)
+			'conditions' => array('Posts.author_id' => $id)
 		));
-		$this->assertEquals($count, count($data['Post']));
+		$this->assertEquals($count, count($data['Posts']));
 	}
 
 /**

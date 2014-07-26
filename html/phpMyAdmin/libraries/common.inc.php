@@ -408,7 +408,7 @@ $goto_whitelist = array(
     //'Documentation.html',
     'export.php',
     'import.php',
-    //'index.php',
+    //'index.ctp',
     //'navigation.php',
     //'license.php',
     'main.php',

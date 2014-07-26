@@ -256,10 +256,10 @@ class CakeRequest implements ArrayAccess {
 		if (strpos($uri, '?') !== false) {
 			list($uri) = explode('?', $uri, 2);
 		}
-		if (empty($uri) || $uri === '/' || $uri === '//' || $uri === '/index.php') {
+		if (empty($uri) || $uri === '/' || $uri === '//' || $uri === '/index.ctp') {
 			$uri = '/';
 		}
-		$endsWithIndex = '/webroot/index.php';
+		$endsWithIndex = '/webroot/index.ctp';
 		$endsWithLength = strlen($endsWithIndex);
 		if (
 			strlen($uri) >= $endsWithLength &&
@@ -273,7 +273,7 @@ class CakeRequest implements ArrayAccess {
 /**
  * Returns a base URL and sets the proper webroot
  *
- * If CakePHP is called with index.php in the URL even though
+ * If CakePHP is called with index.ctp in the URL even though
  * URL Rewriting is activated (and thus not needed) it swallows
  * the unnecessary part from $base to prevent issue #3318.
  *
@@ -296,7 +296,7 @@ class CakeRequest implements ArrayAccess {
 		if (!$baseUrl) {
 			$base = dirname(env('PHP_SELF'));
 
-			$indexPos = strpos($base, '/webroot/index.php');
+			$indexPos = strpos($base, '/webroot/index.ctp');
 			if ($indexPos !== false) {
 				$base = substr($base, 0, $indexPos) . '/webroot';
 			}
@@ -832,13 +832,13 @@ class CakeRequest implements ArrayAccess {
  *
  * ## Reading values.
  *
- * `$request->data('Post.title');`
+ * `$request->data('Posts.title');`
  *
  * When reading values you will get `null` for keys/values that do not exist.
  *
  * ## Writing values
  *
- * `$request->data('Post.title', 'New post!');`
+ * `$request->data('Posts.title', 'New post!');`
  *
  * You can write to any value, even paths/keys that do not exist, and the arrays
  * will be created for you.

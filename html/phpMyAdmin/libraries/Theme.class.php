@@ -339,7 +339,7 @@ class PMA_Theme
         echo '<p>';
         echo '<a target="_top" class="take_theme" '
             .'name="' . htmlspecialchars($this->getId()) . '" '
-            . 'href="index.php'.PMA_generate_common_url(array(
+            . 'href="index.ctp'.PMA_generate_common_url(array(
                 'set_theme' => $this->getId()
                 )) . '">';
         if (@file_exists($this->getPath() . '/screen.png')) {

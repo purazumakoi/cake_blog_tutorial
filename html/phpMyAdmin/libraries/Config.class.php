@@ -509,7 +509,7 @@ class PMA_Config
      */
     function loadUserPreferences()
     {
-        // index.php should load these settings, so that phpmyadmin.css.php
+        // index.ctp should load these settings, so that phpmyadmin.css.php
         // will have everything avaiable in session cache
         $server = isset($GLOBALS['server'])
             ? $GLOBALS['server']
@@ -559,7 +559,7 @@ class PMA_Config
         }
 
         // settings below start really working on next page load, but
-        // changes are made only in index.php so everything is set when
+        // changes are made only in index.ctp so everything is set when
         // in frames
 
         // save theme
@@ -1353,7 +1353,7 @@ class PMA_Config
     static public function getFontsizeForm()
     {
         return '<form name="form_fontsize_selection" id="form_fontsize_selection"'
-            . ' method="post" action="index.php" target="_parent">' . "\n"
+            . ' method="post" action="index.ctp" target="_parent">' . "\n"
             . PMA_generate_common_hidden_inputs() . "\n"
             . PMA_Config::_getFontsizeSelection() . "\n"
             . '<noscript>' . "\n"

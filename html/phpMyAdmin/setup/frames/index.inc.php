@@ -114,7 +114,7 @@ messages_show_html();
 //
 // Display server list
 //
-display_form_top('index.php', 'get', array(
+display_form_top('index.ctp', 'get', array(
     'page' => 'servers',
     'mode' => 'add'
 ));

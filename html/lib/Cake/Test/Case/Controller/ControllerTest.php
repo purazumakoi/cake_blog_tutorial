@@ -1261,7 +1261,7 @@ class ControllerTest extends CakeTestCase {
 	public function testPropertyBackwardsCompatibility() {
 		$request = new CakeRequest('posts/index', false);
 		$request->addParams(array('controller' => 'posts', 'action' => 'index'));
-		$request->data = array('Post' => array('id' => 1));
+		$request->data = array('Posts' => array('id' => 1));
 		$request->here = '/posts/index';
 		$request->webroot = '/';
 

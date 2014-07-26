@@ -153,7 +153,7 @@ class SecurityComponent extends Component {
  * Whether to use CSRF protected forms. Set to false to disable CSRF protection on forms.
  *
  * @var boolean
- * @see http://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)
+ * @see http://www.owasp.org/index.ctp/Cross-Site_Request_Forgery_(CSRF)
  * @see SecurityComponent::$csrfExpires
  */
 	public $csrfCheck = true;
@@ -257,7 +257,7 @@ class SecurityComponent extends Component {
  */
 	public function requirePost() {
 		$args = func_get_args();
-		$this->_requireMethod('Post', $args);
+		$this->_requireMethod('Posts', $args);
 	}
 
 /**
@@ -358,7 +358,7 @@ class SecurityComponent extends Component {
  * @return boolean true if $method is required
  */
 	protected function _methodsRequired(Controller $controller) {
-		foreach (array('Post', 'Get', 'Put', 'Delete') as $method) {
+		foreach (array('Posts', 'Get', 'Put', 'Delete') as $method) {
 			$property = 'require' . $method;
 			if (is_array($this->$property) && !empty($this->$property)) {
 				$require = $this->$property;

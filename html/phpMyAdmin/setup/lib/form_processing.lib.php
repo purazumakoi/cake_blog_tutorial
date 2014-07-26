@@ -18,7 +18,7 @@ function process_formset(FormDisplay $form_display)
         $form_display->fixErrors();
         // drop post data
         header('HTTP/1.1 303 See Other');
-        header('Location: index.php');
+        header('Location: index.ctp');
         exit;
     }
     if (!$form_display->process(false)) {
@@ -52,7 +52,7 @@ function process_formset(FormDisplay $form_display)
         } else {
             // drop post data
             header('HTTP/1.1 303 See Other');
-            header('Location: index.php');
+            header('Location: index.ctp');
             exit;
         }
     }

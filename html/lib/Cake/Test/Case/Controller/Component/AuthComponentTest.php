@@ -359,7 +359,7 @@ class AuthComponentTest extends CakeTestCase {
 		$this->Controller->name = 'CakeError';
 		$this->assertTrue($this->Controller->Auth->startup($this->Controller));
 
-		$this->Controller->name = 'Post';
+		$this->Controller->name = 'Posts';
 		$this->Controller->request['action'] = 'thisdoesnotexist';
 		$this->assertTrue($this->Controller->Auth->startup($this->Controller));
 
@@ -838,7 +838,7 @@ class AuthComponentTest extends CakeTestCase {
 			'dir' => APP_DIR,
 			'webroot' => WEBROOT_DIR,
 			'base' => false,
-			'baseUrl' => '/cake/index.php'
+			'baseUrl' => '/cake/index.ctp'
 		));
 
 		$this->Auth->Session->delete('Auth');
@@ -1400,7 +1400,7 @@ class AuthComponentTest extends CakeTestCase {
 			'dir' => APP_DIR,
 			'webroot' => WEBROOT_DIR,
 			'base' => false,
-			'baseUrl' => '/cake/index.php'
+			'baseUrl' => '/cake/index.ctp'
 		));
 
 		$url = '/users/login';

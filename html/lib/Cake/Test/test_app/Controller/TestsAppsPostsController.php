@@ -23,7 +23,7 @@
  */
 class TestsAppsPostsController extends AppController {
 
-	public $uses = array('Post');
+	public $uses = array('Posts');
 
 	public $viewPath = 'TestsApps';
 
@@ -34,7 +34,7 @@ class TestsAppsPostsController extends AppController {
  */
 	public function add() {
 		$data = array(
-			'Post' => array(
+			'Posts' => array(
 				'title' => 'Test article',
 				'body' => 'Body of article.',
 				'author_id' => 1

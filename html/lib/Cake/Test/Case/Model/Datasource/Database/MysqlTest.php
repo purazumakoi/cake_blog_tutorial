@@ -2014,20 +2014,20 @@ class MysqlTest extends CakeTestCase {
 		$expected = " WHERE `HardCandy`.`name` LIKE 'a' AND `Candy`.`name` LIKE 'c'";
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Dbo->conditions("Post.title = '1.1'");
-		$expected = " WHERE `Post`.`title` = '1.1'";
+		$result = $this->Dbo->conditions("Posts.title = '1.1'");
+		$expected = " WHERE `Posts`.`title` = '1.1'";
 		$this->assertEquals($expected, $result);
 
 		$result = $this->Dbo->conditions("User.id != 0 AND User.user LIKE '%arr%'");
 		$expected = " WHERE `User`.`id` != 0 AND `User`.`user` LIKE '%arr%'";
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Dbo->conditions("SUM(Post.comments_count) > 500");
-		$expected = " WHERE SUM(`Post`.`comments_count`) > 500";
+		$result = $this->Dbo->conditions("SUM(Posts.comments_count) > 500");
+		$expected = " WHERE SUM(`Posts`.`comments_count`) > 500";
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Dbo->conditions("(Post.created < '" . date('Y-m-d H:i') . "') GROUP BY YEAR(Post.created), MONTH(Post.created)");
-		$expected = " WHERE (`Post`.`created` < '" . date('Y-m-d H:i') . "') GROUP BY YEAR(`Post`.`created`), MONTH(`Post`.`created`)";
+		$result = $this->Dbo->conditions("(Posts.created < '" . date('Y-m-d H:i') . "') GROUP BY YEAR(Posts.created), MONTH(Posts.created)");
+		$expected = " WHERE (`Posts`.`created` < '" . date('Y-m-d H:i') . "') GROUP BY YEAR(`Posts`.`created`), MONTH(`Posts`.`created`)";
 		$this->assertEquals($expected, $result);
 
 		$result = $this->Dbo->conditions("score BETWEEN 90.1 AND 95.7");
@@ -2042,8 +2042,8 @@ class MysqlTest extends CakeTestCase {
 		$expected = " WHERE `Aro`.`rght` = `Aro`.`lft` + 1.1";
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Dbo->conditions("(Post.created < '" . date('Y-m-d H:i:s') . "') GROUP BY YEAR(Post.created), MONTH(Post.created)");
-		$expected = " WHERE (`Post`.`created` < '" . date('Y-m-d H:i:s') . "') GROUP BY YEAR(`Post`.`created`), MONTH(`Post`.`created`)";
+		$result = $this->Dbo->conditions("(Posts.created < '" . date('Y-m-d H:i:s') . "') GROUP BY YEAR(Posts.created), MONTH(Posts.created)");
+		$expected = " WHERE (`Posts`.`created` < '" . date('Y-m-d H:i:s') . "') GROUP BY YEAR(`Posts`.`created`), MONTH(`Posts`.`created`)";
 		$this->assertEquals($expected, $result);
 
 		$result = $this->Dbo->conditions('Sportstaette.sportstaette LIKE "%ru%" AND Sportstaette.sportstaettenart_id = 2');
@@ -2055,20 +2055,20 @@ class MysqlTest extends CakeTestCase {
 		$expected = ' WHERE `Sportstaette`.`sportstaettenart_id` = 2 AND `Sportstaette`.`sportstaette` LIKE "%ru%"';
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Dbo->conditions('SUM(Post.comments_count) > 500 AND NOT Post.title IS NULL AND NOT Post.extended_title IS NULL');
-		$expected = ' WHERE SUM(`Post`.`comments_count`) > 500 AND NOT `Post`.`title` IS NULL AND NOT `Post`.`extended_title` IS NULL';
+		$result = $this->Dbo->conditions('SUM(Posts.comments_count) > 500 AND NOT Posts.title IS NULL AND NOT Posts.extended_title IS NULL');
+		$expected = ' WHERE SUM(`Posts`.`comments_count`) > 500 AND NOT `Posts`.`title` IS NULL AND NOT `Posts`.`extended_title` IS NULL';
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Dbo->conditions('NOT Post.title IS NULL AND NOT Post.extended_title IS NULL AND SUM(Post.comments_count) > 500');
-		$expected = ' WHERE NOT `Post`.`title` IS NULL AND NOT `Post`.`extended_title` IS NULL AND SUM(`Post`.`comments_count`) > 500';
+		$result = $this->Dbo->conditions('NOT Posts.title IS NULL AND NOT Posts.extended_title IS NULL AND SUM(Posts.comments_count) > 500');
+		$expected = ' WHERE NOT `Posts`.`title` IS NULL AND NOT `Posts`.`extended_title` IS NULL AND SUM(`Posts`.`comments_count`) > 500';
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Dbo->conditions('NOT Post.extended_title IS NULL AND NOT Post.title IS NULL AND Post.title != "" AND SPOON(SUM(Post.comments_count) + 1.1) > 500');
-		$expected = ' WHERE NOT `Post`.`extended_title` IS NULL AND NOT `Post`.`title` IS NULL AND `Post`.`title` != "" AND SPOON(SUM(`Post`.`comments_count`) + 1.1) > 500';
+		$result = $this->Dbo->conditions('NOT Posts.extended_title IS NULL AND NOT Posts.title IS NULL AND Posts.title != "" AND SPOON(SUM(Posts.comments_count) + 1.1) > 500');
+		$expected = ' WHERE NOT `Posts`.`extended_title` IS NULL AND NOT `Posts`.`title` IS NULL AND `Posts`.`title` != "" AND SPOON(SUM(`Posts`.`comments_count`) + 1.1) > 500';
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Dbo->conditions('NOT Post.title_extended IS NULL AND NOT Post.title IS NULL AND Post.title_extended != Post.title');
-		$expected = ' WHERE NOT `Post`.`title_extended` IS NULL AND NOT `Post`.`title` IS NULL AND `Post`.`title_extended` != `Post`.`title`';
+		$result = $this->Dbo->conditions('NOT Posts.title_extended IS NULL AND NOT Posts.title IS NULL AND Posts.title_extended != Posts.title');
+		$expected = ' WHERE NOT `Posts`.`title_extended` IS NULL AND NOT `Posts`.`title` IS NULL AND `Posts`.`title_extended` != `Posts`.`title`';
 		$this->assertEquals($expected, $result);
 
 		$result = $this->Dbo->conditions("Comment.id = 'a'");
@@ -2263,7 +2263,7 @@ class MysqlTest extends CakeTestCase {
  * @return void
  */
 	public function testArrayConditionsParsing() {
-		$this->loadFixtures('Post', 'Author');
+		$this->loadFixtures('Posts', 'Author');
 		$result = $this->Dbo->conditions(array('Stereo.type' => 'in dash speakers'));
 		$this->assertRegExp("/^\s+WHERE\s+`Stereo`.`type`\s+=\s+'in dash speakers'/", $result);
 
@@ -2292,20 +2292,20 @@ class MysqlTest extends CakeTestCase {
 		$expected = " WHERE `score` BETWEEN 90.1 AND 95.7";
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Dbo->conditions(array('Post.title' => 1.1));
-		$expected = " WHERE `Post`.`title` = 1.1";
+		$result = $this->Dbo->conditions(array('Posts.title' => 1.1));
+		$expected = " WHERE `Posts`.`title` = 1.1";
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Dbo->conditions(array('Post.title' => 1.1), true, true, new Post());
-		$expected = " WHERE `Post`.`title` = '1.1'";
+		$result = $this->Dbo->conditions(array('Posts.title' => 1.1), true, true, new Post());
+		$expected = " WHERE `Posts`.`title` = '1.1'";
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Dbo->conditions(array('SUM(Post.comments_count) >' => '500'));
-		$expected = " WHERE SUM(`Post`.`comments_count`) > '500'";
+		$result = $this->Dbo->conditions(array('SUM(Posts.comments_count) >' => '500'));
+		$expected = " WHERE SUM(`Posts`.`comments_count`) > '500'";
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Dbo->conditions(array('MAX(Post.rating) >' => '50'));
-		$expected = " WHERE MAX(`Post`.`rating`) > '50'";
+		$result = $this->Dbo->conditions(array('MAX(Posts.rating) >' => '50'));
+		$expected = " WHERE MAX(`Posts`.`rating`) > '50'";
 		$this->assertEquals($expected, $result);
 
 		$result = $this->Dbo->conditions(array('lower(Article.title)' => 'secrets'));
@@ -2316,8 +2316,8 @@ class MysqlTest extends CakeTestCase {
 		$expected = " WHERE `title` LIKE '%hello'";
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Dbo->conditions(array('Post.name' => 'mad(g)ik'));
-		$expected = " WHERE `Post`.`name` = 'mad(g)ik'";
+		$result = $this->Dbo->conditions(array('Posts.name' => 'mad(g)ik'));
+		$expected = " WHERE `Posts`.`name` = 'mad(g)ik'";
 		$this->assertEquals($expected, $result);
 
 		$result = $this->Dbo->conditions(array('score' => array(1, 2, 10)));
@@ -2400,12 +2400,12 @@ class MysqlTest extends CakeTestCase {
 		$expected = " WHERE ((`Usergroup`.`permissions`) & 4) = 4";
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Dbo->conditions(array('Post.modified >=' => 'DATE_SUB(NOW(), INTERVAL 7 DAY)'));
-		$expected = " WHERE `Post`.`modified` >= 'DATE_SUB(NOW(), INTERVAL 7 DAY)'";
+		$result = $this->Dbo->conditions(array('Posts.modified >=' => 'DATE_SUB(NOW(), INTERVAL 7 DAY)'));
+		$expected = " WHERE `Posts`.`modified` >= 'DATE_SUB(NOW(), INTERVAL 7 DAY)'";
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Dbo->conditions(array('Post.modified >= DATE_SUB(NOW(), INTERVAL 7 DAY)'));
-		$expected = " WHERE `Post`.`modified` >= DATE_SUB(NOW(), INTERVAL 7 DAY)";
+		$result = $this->Dbo->conditions(array('Posts.modified >= DATE_SUB(NOW(), INTERVAL 7 DAY)'));
+		$expected = " WHERE `Posts`.`modified` >= DATE_SUB(NOW(), INTERVAL 7 DAY)";
 		$this->assertEquals($expected, $result);
 
 		$result = $this->Dbo->conditions(array(
@@ -2652,7 +2652,7 @@ class MysqlTest extends CakeTestCase {
 		$expected = array('`Vendor`.`id`', 'COUNT(`Model`.`vendor_id`) AS `Vendor`.`count`');
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Dbo->fields($this->Model, 'Post', "CONCAT(REPEAT(' ', COUNT(Parent.name) - 1), Node.name) AS name, Node.created");
+		$result = $this->Dbo->fields($this->Model, 'Posts', "CONCAT(REPEAT(' ', COUNT(Parent.name) - 1), Node.name) AS name, Node.created");
 		$expected = array("CONCAT(REPEAT(' ', COUNT(`Parent`.`name`) - 1), Node.name) AS name", "`Node`.`created`");
 		$this->assertEquals($expected, $result);
 
@@ -2665,14 +2665,14 @@ class MysqlTest extends CakeTestCase {
 		$result = $this->Dbo->fields($this->Model, null, 'ROUND(Rating.rate_total / Rating.rate_count,2) AS rating');
 		$this->assertEquals(array('ROUND(Rating.rate_total / Rating.rate_count,2) AS rating'), $result);
 
-		$result = $this->Dbo->fields($this->Model, 'Post', "Node.created, CONCAT(REPEAT(' ', COUNT(Parent.name) - 1), Node.name) AS name");
+		$result = $this->Dbo->fields($this->Model, 'Posts', "Node.created, CONCAT(REPEAT(' ', COUNT(Parent.name) - 1), Node.name) AS name");
 		$expected = array("`Node`.`created`", "CONCAT(REPEAT(' ', COUNT(`Parent`.`name`) - 1), Node.name) AS name");
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Dbo->fields($this->Model, 'Post', "2.2,COUNT(*), SUM(Something.else) as sum, Node.created, CONCAT(REPEAT(' ', COUNT(Parent.name) - 1), Node.name) AS name,Post.title,Post.1,1.1");
+		$result = $this->Dbo->fields($this->Model, 'Posts', "2.2,COUNT(*), SUM(Something.else) as sum, Node.created, CONCAT(REPEAT(' ', COUNT(Parent.name) - 1), Node.name) AS name,Posts.title,Posts.1,1.1");
 		$expected = array(
 			'2.2', 'COUNT(*)', 'SUM(`Something`.`else`) as sum', '`Node`.`created`',
-			"CONCAT(REPEAT(' ', COUNT(`Parent`.`name`) - 1), Node.name) AS name", '`Post`.`title`', '`Post`.`1`', '1.1'
+			"CONCAT(REPEAT(' ', COUNT(`Parent`.`name`) - 1), Node.name) AS name", '`Posts`.`title`', '`Posts`.`1`', '1.1'
 		);
 		$this->assertEquals($expected, $result);
 
@@ -2680,13 +2680,13 @@ class MysqlTest extends CakeTestCase {
 		$expected = array("(`Provider`.`star_total` / `Provider`.`total_ratings`) as `rating`");
 		$this->assertEquals($expected, $result);
 
-		$result = $this->Dbo->fields($this->Model, 'Post');
+		$result = $this->Dbo->fields($this->Model, 'Posts');
 		$expected = array(
-			'`Post`.`id`', '`Post`.`client_id`', '`Post`.`name`', '`Post`.`login`',
-			'`Post`.`passwd`', '`Post`.`addr_1`', '`Post`.`addr_2`', '`Post`.`zip_code`',
-			'`Post`.`city`', '`Post`.`country`', '`Post`.`phone`', '`Post`.`fax`',
-			'`Post`.`url`', '`Post`.`email`', '`Post`.`comments`', '`Post`.`last_login`',
-			'`Post`.`created`', '`Post`.`updated`'
+			'`Posts`.`id`', '`Posts`.`client_id`', '`Posts`.`name`', '`Posts`.`login`',
+			'`Posts`.`passwd`', '`Posts`.`addr_1`', '`Posts`.`addr_2`', '`Posts`.`zip_code`',
+			'`Posts`.`city`', '`Posts`.`country`', '`Posts`.`phone`', '`Posts`.`fax`',
+			'`Posts`.`url`', '`Posts`.`email`', '`Posts`.`comments`', '`Posts`.`last_login`',
+			'`Posts`.`created`', '`Posts`.`updated`'
 		);
 		$this->assertEquals($expected, $result);
 
@@ -2854,11 +2854,11 @@ class MysqlTest extends CakeTestCase {
 		$result = $this->Dbo->order(array(array('title'), array('id')));
 		$this->assertRegExp('/^\s*ORDER BY\s+`title`\s+ASC,\s+`id`\s+ASC\s*$/', $result);
 
-		$result = $this->Dbo->order(array("Post.title" => 'asc', "Post.id" => 'desc'));
-		$this->assertRegExp('/^\s*ORDER BY\s+`Post`.`title`\s+asc,\s+`Post`.`id`\s+desc\s*$/', $result);
+		$result = $this->Dbo->order(array("Posts.title" => 'asc', "Posts.id" => 'desc'));
+		$this->assertRegExp('/^\s*ORDER BY\s+`Posts`.`title`\s+asc,\s+`Posts`.`id`\s+desc\s*$/', $result);
 
-		$result = $this->Dbo->order(array(array("Post.title" => 'asc', "Post.id" => 'desc')));
-		$this->assertRegExp('/^\s*ORDER BY\s+`Post`.`title`\s+asc,\s+`Post`.`id`\s+desc\s*$/', $result);
+		$result = $this->Dbo->order(array(array("Posts.title" => 'asc', "Posts.id" => 'desc')));
+		$this->assertRegExp('/^\s*ORDER BY\s+`Posts`.`title`\s+asc,\s+`Posts`.`id`\s+desc\s*$/', $result);
 
 		$result = $this->Dbo->order(array("title"));
 		$this->assertRegExp('/^\s*ORDER BY\s+`title`\s+ASC\s*$/', $result);
@@ -2876,14 +2876,14 @@ class MysqlTest extends CakeTestCase {
 		$result = $this->Dbo->order("Page.name = 'view' DESC");
 		$this->assertRegExp("/^\s*ORDER BY\s+`Page`\.`name`\s*=\s*'view'\s+DESC\s*$/", $result);
 
-		$result = $this->Dbo->order("(Post.views)");
-		$this->assertRegExp("/^\s*ORDER BY\s+\(`Post`\.`views`\)\s+ASC\s*$/", $result);
+		$result = $this->Dbo->order("(Posts.views)");
+		$this->assertRegExp("/^\s*ORDER BY\s+\(`Posts`\.`views`\)\s+ASC\s*$/", $result);
 
-		$result = $this->Dbo->order("(Post.views)*Post.views");
-		$this->assertRegExp("/^\s*ORDER BY\s+\(`Post`\.`views`\)\*`Post`\.`views`\s+ASC\s*$/", $result);
+		$result = $this->Dbo->order("(Posts.views)*Posts.views");
+		$this->assertRegExp("/^\s*ORDER BY\s+\(`Posts`\.`views`\)\*`Posts`\.`views`\s+ASC\s*$/", $result);
 
-		$result = $this->Dbo->order("(Post.views) * Post.views");
-		$this->assertRegExp("/^\s*ORDER BY\s+\(`Post`\.`views`\) \* `Post`\.`views`\s+ASC\s*$/", $result);
+		$result = $this->Dbo->order("(Posts.views) * Posts.views");
+		$this->assertRegExp("/^\s*ORDER BY\s+\(`Posts`\.`views`\) \* `Posts`\.`views`\s+ASC\s*$/", $result);
 
 		$result = $this->Dbo->order("(Model.field1 + Model.field2) * Model.field3");
 		$this->assertRegExp("/^\s*ORDER BY\s+\(`Model`\.`field1` \+ `Model`\.`field2`\) \* `Model`\.`field3`\s+ASC\s*$/", $result);
