@@ -119,4 +119,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # chef-validator, unless you changed the configuration.
   #
   #   chef.validation_client_name = "ORGNAME-validator"
+  config.vm.synced_folder "./", "/vagrant",
+      owner: 'vagrant',
+      group: 'apache',
+      mount_options: ["dmode=775", "fmode=775"]
 end
